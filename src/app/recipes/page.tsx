@@ -1,15 +1,17 @@
 "use client";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
+
   function recipies() {
-    router.push(`recipes/page.tsx`);
+    router.push(`/recipes`);
   }
   function dashboard() {
-    router.push(`dashboard/page.tsx`);
+    router.push(`/dashboard`);
   }
   function fitness() {
-    router.push(`/page.tsx`);
+    router.push(`/`);
   }
   return (
     <>
