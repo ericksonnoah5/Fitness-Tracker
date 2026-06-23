@@ -11,12 +11,12 @@ export default function Home() {
   const [Password, setpassword] = useState("");
 
   async function submit() {
-    const { data,error } = await supabase
+    const { data, error } = await supabase
       .from("Users")
       .select("id")
       .eq("Username", Username)
       .eq("Password", Password);
-console.log(data,error);
+    console.log(data, error);
     if (data && data.length > 0) {
       router.push(`/user/${Username}/Home`);
     }
