@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raspberry Pi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- Left half: full calendar -->
+      <div class="cal-left">
+        <div class="cal-embed">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=noah%40ultimumgroup.com&src=ericksonnoah5%40gmail.com&src=katiekanaan%40gmail.com&ctz=America%2FChicago&mode=MONTH&showTitle=0&showNav=0&showPrint=0&showTabs=0&showCalendars=0"
+            frameborder="0"
+            scrolling="no"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Right half: 2x2 grid -->
+      <div class="right-grid">
+        <!-- Top-left: photos -->
+        <div class="photo-panel">
+          <img id="img" class="photo-layer active" src="./photos/img.JPG" alt="Camera Feed" />
+          <img id="img2" class="photo-layer" src="" alt="" />
+        </div>
+
+        <!-- Top-right: agenda -->
+        <div class="agenda-embed">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=noah%40ultimumgroup.com&src=ericksonnoah5%40gmail.com&src=katiekanaan%40gmail.com&ctz=America%2FChicago&mode=AGENDA&showTitle=0&showNav=0&showPrint=0&showTabs=0&showCalendars=0"
+            frameborder="0"
+            scrolling="no"
+          ></iframe>
+        </div>
+
+        <!-- Bottom-left: 7-day forecast -->
+        <div class="forecast-card">
+          <div class="location-label">Des Moines, Iowa</div>
+          <div id="forecast"></div>
+        </div>
+
+        <!-- Bottom-right: clock / temp / wind -->
+        <div class="info-panel">
+          <div class="time-section">
+            <div id="time"></div>
+            <div id="date"></div>
+          </div>
+          <div class="weather-section">
+            <div class="stat-card">
+              <span class="stat-value" id="temp"></span>
+              <span class="stat-label">Temperature</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value" id="wind"></span>
+              <span class="stat-label">Wind Speed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
