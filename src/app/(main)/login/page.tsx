@@ -18,7 +18,7 @@ export default function Home() {
       .eq("Password", Password);
     console.log(data, error);
     if (data && data.length > 0) {
-      router.push(`/user/${Username}/Home`);
+      router.push(`/fitness/${Username}/home`);
     }
   }
 
