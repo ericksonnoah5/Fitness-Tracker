@@ -48,7 +48,7 @@ export default function KatiePage() {
     {
       title: "Pinto Bean Pressure Wraps",
       tag: "Research Publication",
-      desc: "ABSTRACT: Identifying an optimal treatment method for verruca vulgaris can be a frustrating challenge for clinicians. We describe the use of a pinto bean pressure wrap to induce ischemic change in digital warts. This novel technique provides a low-cost, low-risk, and nearly pain-free home-based treatment option with response rates similar to those of other commonly employed methods.",
+      desc: "ABSTRACT: Identifying an optimal treatment method for verruca vulgaris can be a frustrating challenge for clinicians. We describe the use of a pinto bean pressure wrap to induce ischemic change in digital warts. This novel technique provides a low-cost, low-risk, and nearly pain-free home-based treatment option with response rates similar to those of other commonly employed methods. DOI: 10.12788/cutis.1121",
       href: "https://pubmed.ncbi.nlm.nih.gov/39787310/",
     },
     {
