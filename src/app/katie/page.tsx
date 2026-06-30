@@ -219,10 +219,10 @@ export default function KatiePage() {
           {stats.map((stat, i) => (
             <FadeIn key={stat.label} delay={i * 100} className="min-w-0">
               <div className="h-full min-w-0 rounded-2xl bg-white/5 p-6 text-center shadow-xl">
-                <p className="break-words font-display text-5xl font-bold text-[#D4A843]">
+                <p className="font-display text-3xl font-bold text-[#D4A843] sm:text-4xl md:text-5xl">
                   {stat.value}
                 </p>
-                <p className="mt-2 break-words text-sm font-semibold uppercase tracking-widest text-white/60">
+                <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-white/60 sm:text-sm">
                   {stat.label}
                 </p>
               </div>
