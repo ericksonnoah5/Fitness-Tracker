@@ -217,12 +217,12 @@ export default function KatiePage() {
       <div className="flex justify-center bg-[#0f1f4d] p-12">
         <div className="grid w-full max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((stat, i) => (
-            <FadeIn key={stat.label} delay={i * 100}>
-              <div className="rounded-2xl bg-white/5 p-6 text-center shadow-xl">
-                <p className="font-display text-5xl font-bold text-[#D4A843]">
+            <FadeIn key={stat.label} delay={i * 100} className="min-w-0">
+              <div className="h-full min-w-0 rounded-2xl bg-white/5 p-6 text-center shadow-xl">
+                <p className="break-words font-display text-5xl font-bold text-[#D4A843]">
                   {stat.value}
                 </p>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-white/60">
+                <p className="mt-2 break-words text-sm font-semibold uppercase tracking-widest text-white/60">
                   {stat.label}
                 </p>
               </div>
