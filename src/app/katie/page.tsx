@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { MoveUpRight, Mail } from "lucide-react";
+import { Phone } from "lucide-react";
+import { ArrowDownToLine } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 function FadeIn({
   children,
@@ -84,17 +88,17 @@ export default function KatiePage() {
   ];
 
   const stats = [
-    { value: "2029", label: "MD Graduating Class" },
-    { value: "2,000+", label: "Clinical Hours" },
-    { value: "1", label: "Publication" },
-    { value: "400+", label: "Volunteer Hours" },
+    { value: "2029 ", label: "MD Graduating Class" },
+    { value: "2,000+ ", label: "Clinical Hours" },
+    { value: "1 ", label: "Publication" },
+    { value: "400+ ", label: "Volunteer Hours" },
   ];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <div className="flex min-h-screen items-center justify-center p-8">
-        <div className="grid w-full max-w-4xl grid-cols-1 gap-12 md:grid-cols-2">
+        <div className="grid w-full max-w-6xl grid-cols-1 gap-12 md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h1 className="mt-4 font-display text-7xl font-bold tracking-tight text-[#0f1f4d]">
               Katie
@@ -123,23 +127,23 @@ export default function KatiePage() {
                 href="/raspberrypi/katie/KatieKanaanCV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-[#4274D9] px-8 py-3 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-8 py-3 font-semibold text-white shadow-sm shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
               >
-                CV ↗
+                CV <ArrowDownToLine size={18} />
               </a>
               <a
                 href="#contact"
-                className="rounded-full bg-[#4274D9] px-8 py-3 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-8 py-3 font-semibold text-white shadow-sm shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
               >
-                Contact Me ↗
+                Contact Me <Mail size={18} />
               </a>
             </div>
           </div>
-          <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/30">
+          <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/60 transition hover:shadow-black/80">
             <img
               src="/raspberrypi/katie/unnamed.jpg"
               alt="Katie Kanaan"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition duration-500 hover:scale-105"
             />
           </div>
         </div>
@@ -147,13 +151,13 @@ export default function KatiePage() {
 
       {/* About */}
       <div id="about" className="flex justify-center bg-[#4274D9] p-12">
-        <div className="grid w-full max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
           <FadeIn>
-            <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/30">
+            <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/45 transition hover:shadow-black/70">
               <img
-                src="/raspberrypi/katie/unnamed.png"
+                src="/raspberrypi/katie/katiepic.jpg"
                 alt="Katie"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition duration-500 hover:scale-105"
               />
             </div>
           </FadeIn>
@@ -164,6 +168,8 @@ export default function KatiePage() {
             <h2 className="mt-3 font-display text-4xl font-bold text-white">
               My Interests
             </h2>
+            <div className="mt-6 h-1 w-24 rounded-full bg-[#FFFFFF]"></div>
+
             <p className="mt-4 leading-relaxed text-white/80">
               Currently, I am interested in specializing in pediatrics! I have
               always loved working with children-- inspiring them, caring for
@@ -178,7 +184,7 @@ export default function KatiePage() {
 
       {/* Projects */}
       <div id="work" className="flex flex-col items-center gap-8 p-12">
-        <FadeIn className="w-full max-w-4xl">
+        <FadeIn className="w-full max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#4274D9]">
             Experiences
           </p>
@@ -186,14 +192,14 @@ export default function KatiePage() {
             Research, Work, & Volunteer Experience
           </h2>
         </FadeIn>
-        <div className="grid w-full max-w-4xl grid-cols-1 gap-6 text-white md:grid-cols-2">
+        <div className="grid w-full max-w-6xl grid-cols-1 gap-6 text-white md:grid-cols-3">
           {projects.map((project, i) => (
             <FadeIn key={project.title} delay={i * 100}>
               <a
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex h-full flex-col rounded-2xl bg-[#4274D9] p-8 text-white shadow-xl shadow-[#4274D9]/30 transition hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#4274D9]/40"
+                className="group flex h-full flex-col rounded-2xl bg-[#4274D9] p-8 text-white shadow-xl shadow-[#4274D9]/30 transition hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-[#4274D9]/55"
               >
                 <span className="w-fit rounded-full bg-[#95CCDD]/20 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#95CCDD]">
                   {project.tag}
@@ -201,11 +207,13 @@ export default function KatiePage() {
                 <h3 className="mt-3 font-display text-3xl font-bold text-[#FFFFFF]">
                   {project.title}
                 </h3>
+                <div className="mt-6 h-1 w-24 rounded-full bg-[#95CCDD]"></div>
+
                 <p className="mt-3 leading-relaxed text-[#FFFFFF]">
                   {project.desc}
                 </p>
-                <span className="[#FFFFFF] mt-6 w-fit text-sm font-semibold underline underline-offset-4">
-                  Learn More ↗
+                <span className="[#FFFFFF] mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  Learn More <ArrowUpRight size={18} />
                 </span>
               </a>
             </FadeIn>
@@ -215,10 +223,10 @@ export default function KatiePage() {
 
       {/* Stats */}
       <div className="flex justify-center bg-[#0f1f4d] p-12">
-        <div className="grid w-full max-w-4xl grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="grid w-full max-w-6xl grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((stat, i) => (
             <FadeIn key={stat.label} delay={i * 100} className="min-w-0">
-              <div className="h-full min-w-0 rounded-2xl bg-white/5 p-6 text-center shadow-xl">
+              <div className="h-full min-w-0 rounded-2xl bg-white/5 p-6 text-center shadow-xl transition hover:-translate-y-1.5 hover:bg-white/10 hover:shadow-2xl">
                 <p className="font-display text-3xl font-bold text-[#D4A843] sm:text-4xl md:text-5xl">
                   {stat.value}
                 </p>
@@ -233,25 +241,27 @@ export default function KatiePage() {
 
       {/* Contact */}
       <div id="contact" className="flex justify-center p-12 pb-20">
-        <FadeIn className="w-full max-w-4xl text-center">
+        <FadeIn className="w-full max-w-6xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#4274D9]">
             Get In Touch
           </p>
           <h2 className="mt-3 font-display text-5xl font-bold text-[#0f1f4d]">
             Let's connect
           </h2>
-          <p className="mt-4 text-lg text-gray-500"> Cell: (319)-671-3807</p>
+          <p className="mt-4 flex items-center justify-center gap-2 text-lg text-gray-500">
+            <Phone size={18} /> (319)-671-3807
+          </p>
           <a
             href="mailto:katiekanaan@gmail.com"
-            className="mt-8 inline-block rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
           >
-            Personal Email ↗
+            Personal Email <Mail size={18} />
           </a>
           <a
             href="mailto:katie-kanaan@uiowa.edu"
-            className="m-2 mt-8 inline-block rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
+            className="m-2 mt-8 inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
           >
-            School Email ↗
+            School Email <Mail size={18} />
           </a>
         </FadeIn>
       </div>
