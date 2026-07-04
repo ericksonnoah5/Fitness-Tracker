@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const router = useRouter();
@@ -31,22 +32,24 @@ export default function Page() {
   function signup() {
     router.push(`/signup`);
   }
-  function home() {
-    router.push(`/`);
+  function test() {
+    router.push(`/test`);
   }
 
   return (
     <>
-      <button onClick={account}>account-</button>
-      <button onClick={fitness}>fitness- </button>
-      <button onClick={katie}>katie- </button>
-      <button onClick={login}>login- </button>
-      <button onClick={noah}>noah- </button>
-      <button onClick={notes}>notes- </button>
-      <button onClick={raspberrypi}>raspberrypi- </button>
-      <button onClick={recipes}>recipes- </button>
-      <button onClick={signup}>signup- </button>
-      <button onClick={home}>home- </button>
+      <div className="mx-auto grid max-w-lg grid-cols-2 gap-2">
+        <Button onClick={account}>account</Button>
+        <Button onClick={fitness}>fitness</Button>
+        <Button onClick={katie}>katie</Button>
+        <Button onClick={login}>login</Button>
+        <Button onClick={noah}>noah</Button>
+        <Button onClick={notes}>notes</Button>
+        <Button onClick={raspberrypi}>raspberrypi</Button>
+        <Button onClick={recipes}>recipes</Button>
+        <Button onClick={signup}>signup</Button>
+        <Button onClick={test}>test</Button>
+      </div>
     </>
   );
 }
