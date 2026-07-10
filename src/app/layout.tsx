@@ -16,7 +16,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "My App",
+  title: "Noah and Katie's",
   description: "",
   icons: {
     icon: "/raspberrypi/favicon/favicon.png",

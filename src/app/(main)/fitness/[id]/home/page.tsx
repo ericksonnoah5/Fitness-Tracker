@@ -9,6 +9,7 @@ export default function IdHomePage() {
   const [weight, changeWeight] = useState("");
   const [addsomeWeight, doaddsomeweight] = useState("");
   const [inputs, setInputs] = useState<any[]>([]);
+  var [averageWeight, setaverageWeight] = useState(null);
 
   const params = useParams();
   const username = params.id as string;
@@ -68,6 +69,18 @@ export default function IdHomePage() {
     setInputs(inputData ?? []);
   }
 
+  async function postWeight() {
+    const response = await fetch("/api/weight", {
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+      }),
+    });
+    const data = await response.json();
+    setaverageWeight(data);
+    console.log(data);
+  }
+
   async function addWeight() {
     if (!addsomeWeight) return;
 
@@ -108,28 +121,30 @@ export default function IdHomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col items-center pt-20 gap-8">
-      <div className="bg-gray-900 rounded-2xl p-8 w-80 flex flex-col gap-4 shadow-xl">
-        <h2 className="text-2xl font-bold text-center">
+    <div className="flex min-h-screen flex-col items-center gap-8 bg-gray-950 pt-20 text-white">
+      <div className="flex w-80 flex-col gap-4 rounded-2xl bg-gray-900 p-8 shadow-xl">
+        <h2 className="text-center text-2xl font-bold">
           {totalWeight}{" "}
-          <span className="text-gray-400 text-lg font-normal">
+          <span className="text-lg font-normal text-gray-400">
             calories left
           </span>
         </h2>
 
-        <h2 className="text-2xl font-bold text-center">
+        <h2 className="text-center text-2xl font-bold">
           {weight}{" "}
-          <span className="text-gray-400 text-lg font-normal">lbs to go</span>
+          <span className="text-lg font-normal text-gray-400">lbs to go</span>
         </h2>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-8 w-80 flex flex-col gap-2 shadow-xl">
-        <h3 className="text-lg font-semibold mb-2">Today's Inputs</h3>
-
+      <div className="flex w-80 flex-col gap-2 rounded-2xl bg-gray-900 p-8 shadow-xl">
+        <h3 className="mb-2 text-lg font-semibold">Today's Inputs</h3>
+        <div className="rounded-lg bg-blue-700">
+          <button onClick={postWeight}>Get Average {averageWeight}</button>
+        </div>
         {inputs.map((item, i) => (
           <div
             key={i}
-            className="flex justify-between text-sm text-gray-300 border-b border-gray-800 py-2"
+            className="flex justify-between border-b border-gray-800 py-2 text-sm text-gray-300"
           >
             <span>{item.calories} cal</span>
 
@@ -139,7 +154,7 @@ export default function IdHomePage() {
           </div>
         ))}
 
-        <div className="flex justify-between font-semibold pt-2">
+        <div className="flex justify-between pt-2 font-semibold">
           <span>Total</span>
           <span>
             {inputs.reduce((sum, item) => sum + Number(item.calories), 0)} cal
@@ -147,18 +162,18 @@ export default function IdHomePage() {
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-2xl p-8 w-80 flex flex-col gap-4 shadow-xl">
+      <div className="flex w-80 flex-col gap-4 rounded-2xl bg-gray-900 p-8 shadow-xl">
         <input
           type="text"
           value={addsomeWeight}
           onChange={(e) => doaddsomeweight(e.target.value)}
           placeholder="Add calories"
-          className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+          className="rounded-lg bg-gray-800 px-4 py-3 text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <button
           onClick={addWeight}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+          className="rounded-lg bg-blue-700 py-3 font-semibold text-white transition hover:bg-blue-700"
         >
           Submit
         </button>
