@@ -1,5 +1,7 @@
 "use client";
 
+import { supabase } from "@/lib/supabase/client";
+
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
@@ -9,17 +11,40 @@ export default function DashboardV2Page() {
   const [now, setNow] = useState<Date>();
 
   const [current, getcurrent] = useState<Date>();
+
   function start() {
-    setNow(new Date());
+    const time = new Date();
+    setNow(time);
+    setDatadate(time);
   }
 
   useEffect(() => {
+    getDatadate();
     const gettime = setInterval(() => {
       getcurrent(new Date());
     }, 1000);
 
     return () => clearInterval(gettime);
   }, []);
+
+  async function getDatadate() {
+    const { data: pooptime } = await supabase
+      .from("PottyTime")
+      .select("time")
+      .order("time", { ascending: false })
+      .limit(1)
+      .single();
+
+    if (pooptime) {
+      setNow(new Date(pooptime.time));
+    }
+  }
+
+  async function setDatadate(time: Date) {
+    const { error } = await supabase.from("PottyTime").insert({
+      time: time.toISOString(),
+    });
+  }
 
   return (
     <>
