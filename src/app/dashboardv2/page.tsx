@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
+const CENTRAL_TIME_ZONE = "America/Chicago";
+
 export default function DashboardV2Page() {
   const [now, setNow] = useState<Date>();
 
@@ -22,10 +24,16 @@ export default function DashboardV2Page() {
           potty
         </Button>
         <h1 className="flex h-full items-center text-3xl">
-          {now ? now.toLocaleTimeString() : null}
+          {now
+            ? now.toLocaleTimeString("en-US", { timeZone: CENTRAL_TIME_ZONE })
+            : null}
         </h1>
         <h1 className="flex h-full items-center text-3xl">
-          {current ? current.toLocaleTimeString() : null}
+          {current
+            ? current.toLocaleTimeString("en-US", {
+                timeZone: CENTRAL_TIME_ZONE,
+              })
+            : null}
         </h1>
       </div>
     </>
