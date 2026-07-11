@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CENTRAL_TIME_ZONE = "America/Chicago";
 
@@ -13,9 +13,13 @@ export default function DashboardV2Page() {
     setNow(new Date());
   }
 
-  const gettime: ReturnType<typeof setInterval> = setInterval(() => {
-    getcurrent(new Date());
-  }, 1000);
+  useEffect(() => {
+    const gettime = setInterval(() => {
+      getcurrent(new Date());
+    }, 1000);
+
+    return () => clearInterval(gettime);
+  }, []);
 
   return (
     <>
