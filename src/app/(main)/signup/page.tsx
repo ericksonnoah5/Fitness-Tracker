@@ -1,3 +1,5 @@
+import { ComingSoon } from "@/components/coming-soon";
+
 export default function SignupPage() {
-  return <div />;
+  return <ComingSoon title="Sign Up" />;
 }

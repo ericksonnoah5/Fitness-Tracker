@@ -1,10 +1,10 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 
-export default function IdHomePage() {
+export default function UsernameHomePage() {
   const [totalWeight, changeTotal] = useState("");
   const [weight, changeWeight] = useState("");
   const [addsomeWeight, doaddsomeweight] = useState("");
@@ -12,7 +12,7 @@ export default function IdHomePage() {
   var [averageWeight, setaverageWeight] = useState(null);
 
   const params = useParams();
-  const username = params.id as string;
+  const username = params.username as string;
 
   useEffect(() => {
     if (username) {

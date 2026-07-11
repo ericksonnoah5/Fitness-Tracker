@@ -1,3 +1,5 @@
+import { ComingSoon } from "@/components/coming-soon";
+
 export default function NotesPage() {
-  return <div />;
+  return <ComingSoon title="Notes" />;
 }

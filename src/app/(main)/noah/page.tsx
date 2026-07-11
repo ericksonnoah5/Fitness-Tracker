@@ -1,3 +1,5 @@
+import { ComingSoon } from "@/components/coming-soon";
+
 export default function NoahPage() {
-  return <div />;
+  return <ComingSoon title="Noah" />;
 }
