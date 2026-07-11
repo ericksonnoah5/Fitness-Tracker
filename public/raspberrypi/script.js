@@ -18,15 +18,6 @@ var photoIndex = 0;
 var activeLayer = imgA;
 
 function weatherEmoji(code) {
-  if (code === 0) return "☀️";
-  if (code <= 2) return "🌤️";
-  if (code === 3) return "☁️";
-  if (code <= 48) return "🌫️";
-  if (code <= 55) return "🌦️";
-  if (code <= 65) return "🌧️";
-  if (code <= 77) return "🌨️";
-  if (code <= 82) return "🌦️";
-  if (code <= 86) return "🌨️";
   return "";
 }
 

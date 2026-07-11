@@ -12,16 +12,21 @@ export default function DashboardV2Page() {
 
   const [current, getcurrent] = useState<Date>();
 
-  function start() {
+  const [number, setnumber] = useState(Number);
+
+  async function start() {
     const time = new Date();
-    setNow(time);
-    setDatadate(time);
+    await setNow(time);
+    await setDatadate(time);
+    await getTimes();
   }
 
   useEffect(() => {
     getDatadate();
+    getTimes();
     const gettime = setInterval(() => {
       getcurrent(new Date());
+      getTimes();
     }, 1000);
 
     return () => clearInterval(gettime);
@@ -43,26 +48,44 @@ export default function DashboardV2Page() {
   async function setDatadate(time: Date) {
     const { error } = await supabase.from("PottyTime").insert({
       time: time.toISOString(),
+      times: 1,
     });
+  }
+
+  async function getTimes() {
+    const { data: thetimes } = await supabase
+      .from("PottyTime")
+      .select("times")
+      .eq("times", 1);
+
+    if (thetimes != null) {
+      setnumber(thetimes.length);
+    }
   }
 
   return (
     <>
       <div className="grid h-screen w-screen grid-cols-3 grid-rows-4">
-        <Button className="h-full items-center text-3xl" onClick={start}>
+        <Button
+          className="flex h-full items-center justify-center text-3xl"
+          onClick={start}
+        >
           potty
         </Button>
-        <h1 className="flex h-full items-center text-3xl">
+        <h1 className="flex h-full items-center justify-center text-3xl">
           {now
             ? now.toLocaleTimeString("en-US", { timeZone: CENTRAL_TIME_ZONE })
             : null}
         </h1>
-        <h1 className="flex h-full items-center text-3xl">
+        <h1 className="flex h-full items-center justify-center text-3xl">
           {current
             ? current.toLocaleTimeString("en-US", {
                 timeZone: CENTRAL_TIME_ZONE,
               })
             : null}
+        </h1>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          {number}
         </h1>
       </div>
     </>
