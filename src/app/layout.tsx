@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Noah and Katie's",
   description: "",
   icons: {
-    icon: "/raspberrypi/favicon/favicon.png",
+    icon: "/favicon.png",
   },
 };
 

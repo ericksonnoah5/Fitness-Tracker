@@ -1,7 +1,6 @@
 "use client";
 
 import Script from "next/script";
-import "./style.css";
 
 export default function Page() {
   return (
@@ -22,7 +21,7 @@ export default function Page() {
             <img
               id="img"
               className="photo-layer active"
-              src="/raspberrypi/photos/img.JPG"
+              src="/raspberrypi/photos/img1.jpg"
               alt="Camera Feed"
             />
             <img id="img2" className="photo-layer" src="" alt="" />

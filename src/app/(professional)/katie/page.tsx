@@ -124,7 +124,7 @@ export default function KatiePage() {
             </p>
             <div className="mt-8 flex gap-4">
               <a
-                href="/raspberrypi/katie/KatieKanaanCV.pdf"
+                href="/katie/KatieKanaanCV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-8 py-3 font-semibold text-white shadow-sm shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
@@ -141,7 +141,7 @@ export default function KatiePage() {
           </div>
           <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/60 transition hover:shadow-black/80">
             <img
-              src="/raspberrypi/katie/unnamed.jpg"
+              src="/katie/unnamed.jpg"
               alt="Katie Kanaan"
               className="h-full w-full object-cover transition duration-500 hover:scale-105"
             />
@@ -155,7 +155,7 @@ export default function KatiePage() {
           <FadeIn>
             <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/45 transition hover:shadow-black/70">
               <img
-                src="/raspberrypi/katie/katiepic.jpg"
+                src="/katie/katiepic.jpg"
                 alt="Katie"
                 className="h-full w-full object-cover transition duration-500 hover:scale-105"
               />

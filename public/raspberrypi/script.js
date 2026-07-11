@@ -7,12 +7,12 @@ var imgB = document.getElementById("img2");
 var forecastDoc = document.getElementById("forecast");
 
 var photos = [
-  "/raspberrypi/photos/img.JPG",
-  "/raspberrypi/photos/img2.jpeg",
-  "/raspberrypi/photos/img4.PNG",
-  "/raspberrypi/photos/img5.jpeg",
-  "/raspberrypi/photos/img6.png",
-  "/raspberrypi/photos/img7.jpeg",
+  "/raspberrypi/photos/img1.jpg",
+  "/raspberrypi/photos/img2.jpg",
+  "/raspberrypi/photos/img3.png",
+  "/raspberrypi/photos/img4.jpg",
+  "/raspberrypi/photos/img5.png",
+  "/raspberrypi/photos/img6.jpg",
 ];
 var photoIndex = 0;
 var activeLayer = imgA;
