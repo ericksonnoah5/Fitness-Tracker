@@ -27,7 +27,7 @@ function weatherEmoji(code) {
   if (code <= 77) return "🌨️";
   if (code <= 82) return "🌦️";
   if (code <= 86) return "🌨️";
-  return "⛈️";
+  return "";
 }
 
 function cToF(c) {

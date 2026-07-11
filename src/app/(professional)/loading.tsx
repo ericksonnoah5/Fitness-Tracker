@@ -1,5 +1,5 @@
-import { BoundaryMessage } from "@/components/boundary-message";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Loading() {
-  return <BoundaryMessage title="Loading" showSpinner />;
+  return <Spinner />;
 }
