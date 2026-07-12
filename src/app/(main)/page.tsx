@@ -41,29 +41,29 @@ export default function Page() {
 
   return (
     <>
-      <div className="mx-auto grid max-w-3xl grid-cols-2 gap-5">
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={fitness}>
+      <div className="grid-row-4 grid h-screen w-screen grid-cols-2 gap-5">
+        <Button className="flex h-full text-5xl" onClick={fitness}>
           Fitness
         </Button>
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={dashboardv2}>
+        <Button className="flex h-full text-5xl" onClick={dashboardv2}>
           Dashboardv2
         </Button>
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={katie}>
+        <Button className="flex h-full text-5xl" onClick={katie}>
           Katie
         </Button>
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={noah}>
+        <Button className="flex h-full text-5xl" onClick={noah}>
           Noah
         </Button>
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={notes}>
+        <Button className="flex h-full text-5xl" onClick={notes}>
           Notes
         </Button>
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={raspberrypi}>
+        <Button className="flex h-full text-5xl" onClick={raspberrypi}>
           Dashboard
         </Button>
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={recipes}>
+        <Button className="flex h-full text-5xl" onClick={recipes}>
           Recipes
         </Button>
-        <Button className="h-[300px] w-[300px] text-4xl" onClick={test}>
+        <Button className="flex h-full text-5xl" onClick={test}>
           Test
         </Button>
       </div>
