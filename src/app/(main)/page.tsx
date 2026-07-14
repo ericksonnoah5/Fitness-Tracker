@@ -41,7 +41,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="grid-row-4 grid h-screen w-screen grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="grid h-screen w-screen grid-cols-1 grid-rows-4 gap-5 sm:grid-cols-2">
         <Button className="flex h-full text-5xl" onClick={fitness}>
           Fitness
         </Button>
