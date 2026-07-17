@@ -68,7 +68,7 @@ export default function DashboardV2Page() {
       <h1 className="flex h-full items-center justify-center p-10 text-3xl">
         Doggy potty dash
       </h1>
-      <div className="grid h-screen w-screen grid-cols-2 grid-rows-4 sm:grid-cols-4">
+      <div className="grid h-screen w-screen grid-cols-2 grid-rows-6 sm:grid-cols-4">
         <h1 className="flex h-full items-center justify-center text-3xl">
           Poops: {number}
         </h1>
