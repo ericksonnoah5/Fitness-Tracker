@@ -65,12 +65,18 @@ export default function DashboardV2Page() {
 
   return (
     <>
-      <div className="grid h-screen w-screen grid-cols-3 grid-rows-4">
+      <h1 className="flex h-full items-center justify-center p-10 text-3xl">
+        Doggy potty dash
+      </h1>
+      <div className="grid h-screen w-screen grid-cols-2 grid-rows-4 sm:grid-cols-4">
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          Poops: {number}
+        </h1>
         <Button
           className="flex h-full items-center justify-center text-3xl"
           onClick={start}
         >
-          potty
+          poop
         </Button>
         <h1 className="flex h-full items-center justify-center text-3xl">
           {now
@@ -85,7 +91,34 @@ export default function DashboardV2Page() {
             : null}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          {number}
+          Pees: {number}
+        </h1>
+        <Button
+          className="flex h-full items-center justify-center text-3xl"
+          onClick={start}
+        >
+          pee
+        </Button>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          00:00 pm
+        </h1>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          Total:
+        </h1>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          Accidents: 0
+        </h1>
+        <Button
+          className="flex h-full items-center justify-center text-3xl"
+          onClick={start}
+        >
+          accident
+        </Button>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          Next poop: 00:00
+        </h1>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          Next pee: 00:00
         </h1>
       </div>
     </>

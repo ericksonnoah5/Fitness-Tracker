@@ -3,6 +3,7 @@
 import { supabase } from "@/lib/supabase/client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Dumbbell } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
@@ -23,26 +24,29 @@ export default function Home() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-950">
-      <div className="bg-gray-900 p-10 rounded-2xl shadow-xl flex flex-col gap-4 w-80">
-        <h1 className="text-white text-3xl font-bold text-center">Login</h1>
+    <div className="flex h-screen flex-col items-center justify-center bg-gray-950">
+      <div className="flex p-14 text-3xl text-white">
+        Fitness App&nbsp;&nbsp; <Dumbbell></Dumbbell>
+      </div>
+      <div className="flex w-[400px] flex-col justify-center gap-4 rounded-2xl bg-gray-900 p-12 shadow-2xl sm:w-[500px]">
+        <h1 className="text-center text-3xl font-bold text-white">Login</h1>
         <input
           type="text"
           value={Username}
           onChange={(e) => setusername(e.target.value)}
           placeholder="Username"
-          className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+          className="rounded-lg bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none hover:bg-gray-800 focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="password"
           value={Password}
           onChange={(e) => setpassword(e.target.value)}
           placeholder="Password"
-          className="bg-gray-800 text-white placeholder-gray-500 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+          className="rounded-lg bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none hover:bg-gray-800 focus:ring-2 focus:ring-blue-500"
         />
         <button
           onClick={submit}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+          className="rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
         >
           Submit
         </button>

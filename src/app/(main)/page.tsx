@@ -41,21 +41,18 @@ export default function Page() {
 
   return (
     <>
-      <div className="grid h-screen w-screen grid-cols-1 grid-rows-4 gap-5 sm:grid-cols-2">
+      <div className="grid h-screen w-screen grid-cols-1 grid-rows-4 grid-rows-8 gap-5 sm:grid-cols-2">
         <Button className="flex h-full text-5xl" onClick={fitness}>
           Fitness
         </Button>
         <Button className="flex h-full text-5xl" onClick={dashboardv2}>
-          Dashboardv2
+          Potty
         </Button>
         <Button className="flex h-full text-5xl" onClick={katie}>
           Katie
         </Button>
         <Button className="flex h-full text-5xl" onClick={noah}>
           Noah
-        </Button>
-        <Button className="flex h-full text-5xl" onClick={notes}>
-          Notes
         </Button>
         <Button className="flex h-full text-5xl" onClick={raspberrypi}>
           Dashboard
