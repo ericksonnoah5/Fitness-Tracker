@@ -8,59 +8,140 @@ import { useEffect, useState } from "react";
 const CENTRAL_TIME_ZONE = "America/Chicago";
 
 export default function DashboardV2Page() {
-  const [now, setNow] = useState<Date>();
-
-  const [current, getcurrent] = useState<Date>();
-
-  const [number, setnumber] = useState(Number);
+  const [currenttime, setcurrenttime] = useState<Date>();
+  const [poopnumber, setpoopnumber] = useState(Number);
+  const [peenumber, setpeenumber] = useState(Number);
+  const [lastpoop, setlastpoop] = useState<Date>();
+  const [lastpee, setlastpee] = useState<Date>();
+  const [peeandpoop, setpeeandpoop] = useState(Number);
+  const [accidents, setaccidents] = useState(Number);
+  const [nextpoop, setnextpoop] = useState(Number);
+  const [nextpee, setnextpee] = useState(Number);
 
   async function start() {
     const time = new Date();
-    await setNow(time);
-    await setDatadate(time);
+    await setcurrenttime(time);
+    await getPoopTime();
+    await getPeetime();
+    await getAccidents();
     await getTimes();
+    await getPoop();
+    await getPee();
   }
 
   useEffect(() => {
-    getDatadate();
-    getTimes();
+    start();
+
     const gettime = setInterval(() => {
-      getcurrent(new Date());
-      getTimes();
+      setcurrenttime(new Date());
     }, 1000);
 
     return () => clearInterval(gettime);
   }, []);
 
-  async function getDatadate() {
+  async function getPoopTime() {
     const { data: pooptime } = await supabase
       .from("PottyTime")
       .select("time")
+      .eq('"poop times"', 1)
       .order("time", { ascending: false })
       .limit(1)
       .single();
 
     if (pooptime) {
-      setNow(new Date(pooptime.time));
+      setlastpoop(new Date(pooptime.time));
+    }
+  }
+  async function getPeetime() {
+    const { data: peetime } = await supabase
+      .from("PottyTime")
+      .select("time")
+      .eq('"pee times"', 1)
+      .order("time", { ascending: false })
+      .limit(1)
+      .single();
+
+    if (peetime) {
+      setlastpee(new Date(peetime.time));
     }
   }
 
-  async function setDatadate(time: Date) {
-    const { error } = await supabase.from("PottyTime").insert({
-      time: time.toISOString(),
-      times: 1,
-    });
+  async function getAccidents() {
+    const { data: hasaccidents } = await supabase
+      .from("PottyTime")
+      .select("accident")
+      .eq("accident", 1);
+
+    if (hasaccidents) {
+      setaccidents(hasaccidents.length);
+    }
   }
 
   async function getTimes() {
     const { data: thetimes } = await supabase
       .from("PottyTime")
-      .select("times")
-      .eq("times", 1);
+      .select('"poop times", "pee times"')
+      .or('"pee times".eq.1,"poop times".eq.1');
 
-    if (thetimes != null) {
-      setnumber(thetimes.length);
+    if (thetimes) {
+      setpeeandpoop(thetimes.length);
     }
+  }
+
+  async function getPoop() {
+    const { data: thetimes } = await supabase
+      .from("PottyTime")
+      .select('"poop times"')
+      .eq('"poop times"', 1);
+
+    if (thetimes) {
+      setpoopnumber(thetimes.length);
+    }
+  }
+
+  async function getPee() {
+    const { data: thetimes } = await supabase
+      .from("PottyTime")
+      .select('"pee times"')
+      .eq('"pee times"', 1);
+
+    if (thetimes) {
+      setpeenumber(thetimes.length);
+    }
+  }
+
+  async function setpoopdata() {
+    if (currenttime != null) {
+      const { data, error } = await supabase.from("PottyTime").insert({
+        time: currenttime.toISOString(),
+        "poop times": 1,
+      });
+    }
+    await getPoop();
+    await getTimes();
+    await getPoopTime();
+  }
+
+  async function setpeedata() {
+    if (currenttime != null) {
+      const { data, error } = await supabase.from("PottyTime").insert({
+        time: currenttime.toISOString(),
+        "pee times": 1,
+      });
+    }
+    await getPee();
+    await getTimes();
+    await getPeetime();
+  }
+
+  async function setaccidentdata() {
+    if (currenttime != null) {
+      const { data, error } = await supabase.from("PottyTime").insert({
+        time: currenttime.toISOString(),
+        accident: 1,
+      });
+    }
+    await getAccidents();
   }
 
   return (
@@ -70,55 +151,61 @@ export default function DashboardV2Page() {
       </h1>
       <div className="grid h-screen w-screen grid-cols-2 grid-rows-6 sm:grid-cols-4">
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Poops: {number}
+          Poops: {poopnumber}
         </h1>
         <Button
           className="flex h-full items-center justify-center text-3xl"
-          onClick={start}
+          onClick={setpoopdata}
         >
           poop
         </Button>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          {now
-            ? now.toLocaleTimeString("en-US", { timeZone: CENTRAL_TIME_ZONE })
-            : null}
-        </h1>
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          {current
-            ? current.toLocaleTimeString("en-US", {
+          {lastpoop
+            ? lastpoop.toLocaleTimeString("en-US", {
                 timeZone: CENTRAL_TIME_ZONE,
               })
             : null}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Pees: {number}
+          {currenttime
+            ? currenttime.toLocaleTimeString("en-US", {
+                timeZone: CENTRAL_TIME_ZONE,
+              })
+            : null}
+        </h1>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          Pees: {peenumber}
         </h1>
         <Button
           className="flex h-full items-center justify-center text-3xl"
-          onClick={start}
+          onClick={setpeedata}
         >
           pee
         </Button>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          00:00 pm
+          {lastpee
+            ? lastpee.toLocaleTimeString("en-US", {
+                timeZone: CENTRAL_TIME_ZONE,
+              })
+            : null}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Total:
+          Total: {peeandpoop}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Accidents: 0
+          Accidents: {accidents}
         </h1>
         <Button
           className="flex h-full items-center justify-center text-3xl"
-          onClick={start}
+          onClick={setaccidentdata}
         >
           accident
         </Button>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Next poop: 00:00
+          Next poop: {nextpoop}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Next pee: 00:00
+          Next pee: {nextpee}
         </h1>
       </div>
     </>
