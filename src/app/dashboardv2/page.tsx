@@ -247,14 +247,14 @@ export default function DashboardV2Page() {
           accident
         </Button>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Total: {peeandpoop}
-        </h1>
-        <h1 className="flex h-full items-center justify-center text-3xl">
           {currenttime
             ? currenttime.toLocaleTimeString("en-US", {
                 timeZone: CENTRAL_TIME_ZONE,
               })
             : null}
+        </h1>
+        <h1 className="flex h-full items-center justify-center text-3xl">
+          Total: {peeandpoop}
         </h1>
       </div>
     </>
