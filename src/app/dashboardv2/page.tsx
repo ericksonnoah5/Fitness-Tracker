@@ -3,7 +3,7 @@
 import { supabase } from "@/lib/supabase/client";
 
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CENTRAL_TIME_ZONE = "America/Chicago";
 
@@ -18,26 +18,73 @@ export default function DashboardV2Page() {
   const [nextpoop, setnextpoop] = useState(Number);
   const [nextpee, setnextpee] = useState(Number);
 
+  const currenttimeRef = useRef<Date>();
+  const lastpoopRef = useRef<Date>();
+  const lastpeeRef = useRef<Date>();
+
+  function updateCurrentTime(time: Date) {
+    currenttimeRef.current = time;
+    setcurrenttime(time);
+  }
+  function updateLastPoop(time: Date) {
+    lastpoopRef.current = time;
+    setlastpoop(time);
+  }
+  function updateLastPee(time: Date) {
+    lastpeeRef.current = time;
+    setlastpee(time);
+  }
+
   async function start() {
     const time = new Date();
-    await setcurrenttime(time);
+    updateCurrentTime(time);
     await getPoopTime();
     await getPeetime();
     await getAccidents();
     await getTimes();
     await getPoop();
     await getPee();
+    lastpoopt();
+    lastpeep();
   }
 
   useEffect(() => {
     start();
 
     const gettime = setInterval(() => {
-      setcurrenttime(new Date());
+      updateCurrentTime(new Date());
+      lastpoopt();
+      lastpeep();
     }, 1000);
 
     return () => clearInterval(gettime);
   }, []);
+
+  function lastpoopt() {
+    if (lastpoopRef.current != null && currenttimeRef.current != null) {
+      const npoop =
+        currenttimeRef.current.getTime() - lastpoopRef.current.getTime();
+      setnextpoop(npoop);
+    }
+  }
+  function lastpeep() {
+    if (lastpeeRef.current != null && currenttimeRef.current != null) {
+      const npee =
+        currenttimeRef.current.getTime() - lastpeeRef.current.getTime();
+      setnextpee(npee);
+    }
+  }
+
+  function formatElapsed(ms: number) {
+    if (ms < 0) return null;
+    const totalSeconds = Math.floor(ms / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    if (hours > 0) return `${hours}h ${minutes}m ago`;
+    if (minutes > 0) return `${minutes}m ${seconds}s ago`;
+    return `${seconds}s ago`;
+  }
 
   async function getPoopTime() {
     const { data: pooptime } = await supabase
@@ -49,7 +96,7 @@ export default function DashboardV2Page() {
       .single();
 
     if (pooptime) {
-      setlastpoop(new Date(pooptime.time));
+      updateLastPoop(new Date(pooptime.time));
     }
   }
   async function getPeetime() {
@@ -62,7 +109,7 @@ export default function DashboardV2Page() {
       .single();
 
     if (peetime) {
-      setlastpee(new Date(peetime.time));
+      updateLastPee(new Date(peetime.time));
     }
   }
 
@@ -167,12 +214,9 @@ export default function DashboardV2Page() {
             : null}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          {currenttime
-            ? currenttime.toLocaleTimeString("en-US", {
-                timeZone: CENTRAL_TIME_ZONE,
-              })
-            : null}
+          Last poop: {formatElapsed(nextpoop)}
         </h1>
+
         <h1 className="flex h-full items-center justify-center text-3xl">
           Pees: {peenumber}
         </h1>
@@ -190,8 +234,9 @@ export default function DashboardV2Page() {
             : null}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Total: {peeandpoop}
+          Last pee: {formatElapsed(nextpee)}
         </h1>
+
         <h1 className="flex h-full items-center justify-center text-3xl">
           Accidents: {accidents}
         </h1>
@@ -202,10 +247,14 @@ export default function DashboardV2Page() {
           accident
         </Button>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Next poop: {nextpoop}
+          Total: {peeandpoop}
         </h1>
         <h1 className="flex h-full items-center justify-center text-3xl">
-          Next pee: {nextpee}
+          {currenttime
+            ? currenttime.toLocaleTimeString("en-US", {
+                timeZone: CENTRAL_TIME_ZONE,
+              })
+            : null}
         </h1>
       </div>
     </>
