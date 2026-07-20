@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase/client";
 
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const CENTRAL_TIME_ZONE = "America/Chicago";
 
@@ -192,71 +193,89 @@ export default function DashboardV2Page() {
   }
 
   return (
-    <>
-      <h1 className="flex h-full items-center justify-center p-10 text-3xl">
-        Doggy potty dash
-      </h1>
-      <div className="grid h-screen w-screen grid-cols-2 grid-rows-6 sm:grid-cols-4">
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          Poops: {poopnumber}
-        </h1>
-        <Button
-          className="flex h-full items-center justify-center text-3xl"
-          onClick={setpoopdata}
-        >
-          poop
-        </Button>
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          {lastpoop
-            ? lastpoop.toLocaleTimeString("en-US", {
-                timeZone: CENTRAL_TIME_ZONE,
-              })
-            : null}
-        </h1>
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          Last poop: {formatElapsed(nextpoop)}
-        </h1>
+    <div className="font-bold text-white">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="fixed inset-0 h-full w-full object-cover"
+      >
+        <source src="../../atlas.mp4" type="video/mp4" />
+      </video>
+      <div className="relative z-10 m-16 rounded-3xl bg-black bg-black/60 font-sans tracking-wide backdrop-blur-md">
+        <div className="m-10 rounded-2xl bg-black/60 p-4">
+          <h1 className="flex h-full items-center justify-center p-10 text-5xl">
+            Doggy potty dash
+          </h1>
+        </div>
+        <div className="grid h-[600px] w-screen grid-cols-2 grid-rows-3 p-16 sm:grid-cols-4">
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            Poops: {poopnumber}
+          </h1>
+          <Button
+            className="flex h-full items-center justify-center text-3xl"
+            onClick={setpoopdata}
+          >
+            Poop
+          </Button>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            {lastpoop
+              ? lastpoop.toLocaleTimeString("en-US", {
+                  timeZone: CENTRAL_TIME_ZONE,
+                })
+              : null}
+          </h1>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            {formatElapsed(nextpoop)}
+          </h1>
 
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          Pees: {peenumber}
-        </h1>
-        <Button
-          className="flex h-full items-center justify-center text-3xl"
-          onClick={setpeedata}
-        >
-          pee
-        </Button>
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          {lastpee
-            ? lastpee.toLocaleTimeString("en-US", {
-                timeZone: CENTRAL_TIME_ZONE,
-              })
-            : null}
-        </h1>
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          Last pee: {formatElapsed(nextpee)}
-        </h1>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            Pees: {peenumber}
+          </h1>
+          <Button
+            className="flex h-full items-center justify-center text-3xl"
+            onClick={setpeedata}
+          >
+            Pee
+          </Button>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            {lastpee
+              ? lastpee.toLocaleTimeString("en-US", {
+                  timeZone: CENTRAL_TIME_ZONE,
+                })
+              : null}
+          </h1>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            {formatElapsed(nextpee)}
+          </h1>
 
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          Accidents: {accidents}
-        </h1>
-        <Button
-          className="flex h-full items-center justify-center text-3xl"
-          onClick={setaccidentdata}
-        >
-          accident
-        </Button>
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          {currenttime
-            ? currenttime.toLocaleTimeString("en-US", {
-                timeZone: CENTRAL_TIME_ZONE,
-              })
-            : null}
-        </h1>
-        <h1 className="flex h-full items-center justify-center text-3xl">
-          Total: {peeandpoop}
-        </h1>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            Accidents: {accidents}
+          </h1>
+          <Button
+            className="flex h-full items-center justify-center text-3xl"
+            onClick={setaccidentdata}
+          >
+            Accident
+          </Button>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            {currenttime
+              ? currenttime.toLocaleTimeString("en-US", {
+                  timeZone: CENTRAL_TIME_ZONE,
+                })
+              : null}
+          </h1>
+          <h1 className="flex h-full items-center justify-center text-3xl">
+            <Image
+              src="/atlas.jpg"
+              alt="Atlas"
+              width={200}
+              height={100}
+            ></Image>
+          </h1>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
