@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, IBM_Plex_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import ServiceWorkerRegister from "@/components/service-worker-register";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -18,9 +19,20 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: "Noah and Katie's",
   description: "",
+  manifest: "/manifest.json",
   icons: {
     icon: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Noah and Katie's",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -37,7 +49,10 @@ export default function RootLayout({
         playfairDisplay.variable,
       )}
     >
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <ServiceWorkerRegister />
+      </body>
     </html>
   );
 }
