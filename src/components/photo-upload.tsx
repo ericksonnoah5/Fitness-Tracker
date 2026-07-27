@@ -9,6 +9,7 @@ export default function PhotoUpload() {
   const [status, setStatus] = useState<"idle" | "uploading" | "done" | "error">(
     "idle",
   );
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleFile(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -21,6 +22,7 @@ export default function PhotoUpload() {
       .from("photos")
       .upload(path, file);
 
+    setErrorMessage(error?.message ?? "");
     setStatus(error ? "error" : "done");
     event.target.value = "";
   }
@@ -34,7 +36,6 @@ export default function PhotoUpload() {
         ref={inputRef}
         type="file"
         accept="image/*"
-        capture="environment"
         className="hidden"
         onChange={handleFile}
       />
@@ -46,7 +47,7 @@ export default function PhotoUpload() {
       )}
       {status === "error" && (
         <p className="text-sm text-destructive">
-          Upload failed — check the photos bucket exists in Supabase.
+          Upload failed{errorMessage ? `: ${errorMessage}` : ""}
         </p>
       )}
     </div>
