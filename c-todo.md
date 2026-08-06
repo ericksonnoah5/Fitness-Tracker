@@ -8,4 +8,4 @@ X med - change some ui on katies website, it looks nice it just needs a little b
 X low - the login on the fitness app needs removed and add just an option for either katie or noah
 X low - remove dashboard and recipes as buttons
 
-commit and push the new branch
+X commit and push the new branch
