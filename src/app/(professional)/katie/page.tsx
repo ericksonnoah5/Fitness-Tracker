@@ -133,7 +133,7 @@ export default function KatiePage() {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-8 py-3 font-semibold text-white shadow-sm shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-[#4274D9] px-8 py-3 font-semibold text-[#4274D9] transition hover:bg-[#4274D9] hover:text-white"
               >
                 Contact Me <Mail size={18} />
               </a>
@@ -212,7 +212,7 @@ export default function KatiePage() {
                 <p className="mt-3 leading-relaxed text-[#FFFFFF]">
                   {project.desc}
                 </p>
-                <span className="[#FFFFFF] mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                <span className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-white underline underline-offset-4 transition group-hover:gap-3">
                   Learn More <ArrowUpRight size={18} />
                 </span>
               </a>
@@ -251,18 +251,20 @@ export default function KatiePage() {
           <p className="mt-4 flex items-center justify-center gap-2 text-lg text-gray-500">
             <Phone size={18} /> (319)-671-3807
           </p>
-          <a
-            href="mailto:katiekanaan@gmail.com"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
-          >
-            Personal Email <Mail size={18} />
-          </a>
-          <a
-            href="mailto:katie-kanaan@uiowa.edu"
-            className="m-2 mt-8 inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
-          >
-            School Email <Mail size={18} />
-          </a>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="mailto:katiekanaan@gmail.com"
+              className="inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
+            >
+              Personal Email <Mail size={18} />
+            </a>
+            <a
+              href="mailto:katie-kanaan@uiowa.edu"
+              className="inline-flex items-center gap-2 rounded-full bg-[#4274D9] px-10 py-4 font-semibold text-white shadow-lg shadow-[#4274D9]/30 transition hover:bg-[#3560c0]"
+            >
+              School Email <Mail size={18} />
+            </a>
+          </div>
         </FadeIn>
       </div>
     </div>

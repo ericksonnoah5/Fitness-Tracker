@@ -8,15 +8,15 @@ export function BoundaryMessage({
   showSpinner?: boolean;
 }) {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex items-center gap-6">
+    <div className="flex h-screen items-center justify-center p-6">
+      <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
         <h1 className="text-2xl">{title}</h1>
         {showSpinner && <Spinner className="size-14" />}
         <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/30">
           <img
             src="/atlas.jpg"
             alt="Atlas"
-            className="h-auto w-[300] object-cover"
+            className="h-auto w-48 max-w-full object-cover sm:w-[300px]"
           />
         </div>
       </div>

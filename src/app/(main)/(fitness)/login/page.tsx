@@ -1,54 +1,40 @@
 "use client";
 
-import { supabase } from "@/lib/supabase/client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Dumbbell } from "lucide-react";
+import { Dumbbell, User } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
 
-  const [Username, setusername] = useState("");
-  const [Password, setpassword] = useState("");
-
-  async function submit() {
-    const { data, error } = await supabase
-      .from("Users")
-      .select("id")
-      .eq("Username", Username)
-      .eq("Password", Password);
-    console.log(data, error);
-    if (data && data.length > 0) {
-      router.push(`/fitness/${Username}/home`);
-    }
-  }
-
   return (
-    <div className="flex h-screen flex-col items-center justify-center bg-gray-950">
-      <div className="flex p-14 text-3xl text-white">
-        Fitness App&nbsp;&nbsp; <Dumbbell></Dumbbell>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-10 bg-gradient-to-b from-gray-950 to-gray-900 px-4 py-16 text-white">
+      <div className="flex flex-col items-center gap-3">
+        <div className="flex size-14 items-center justify-center rounded-2xl bg-blue-600 shadow-lg shadow-blue-600/30">
+          <Dumbbell size={28} />
+        </div>
+        <h1 className="font-display text-3xl font-bold">Fitness App</h1>
+        <p className="text-sm text-gray-400">Who&apos;s tracking today?</p>
       </div>
-      <div className="flex w-[400px] flex-col justify-center gap-4 rounded-2xl bg-gray-900 p-12 shadow-2xl sm:w-[500px]">
-        <h1 className="text-center text-3xl font-bold text-white">Login</h1>
-        <input
-          type="text"
-          value={Username}
-          onChange={(e) => setusername(e.target.value)}
-          placeholder="Username"
-          className="rounded-lg bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none hover:bg-gray-800 focus:ring-2 focus:ring-blue-500"
-        />
-        <input
-          type="password"
-          value={Password}
-          onChange={(e) => setpassword(e.target.value)}
-          placeholder="Password"
-          className="rounded-lg bg-gray-700 px-4 py-3 text-white placeholder-gray-400 outline-none hover:bg-gray-800 focus:ring-2 focus:ring-blue-500"
-        />
+
+      <div className="grid w-full max-w-[420px] grid-cols-2 gap-4">
         <button
-          onClick={submit}
-          className="rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+          onClick={() => router.push("/fitness/katie/home")}
+          className="group flex flex-col items-center gap-3 rounded-2xl bg-gray-900 p-8 shadow-xl transition hover:-translate-y-1 hover:bg-gray-800 hover:shadow-2xl"
         >
-          Submit
+          <div className="flex size-16 items-center justify-center rounded-full bg-pink-500/15 text-pink-400 transition group-hover:bg-pink-500/25">
+            <User size={28} />
+          </div>
+          <span className="text-lg font-semibold">Katie</span>
+        </button>
+
+        <button
+          onClick={() => router.push("/fitness/noah/home")}
+          className="group flex flex-col items-center gap-3 rounded-2xl bg-gray-900 p-8 shadow-xl transition hover:-translate-y-1 hover:bg-gray-800 hover:shadow-2xl"
+        >
+          <div className="flex size-16 items-center justify-center rounded-full bg-blue-500/15 text-blue-400 transition group-hover:bg-blue-500/25">
+            <User size={28} />
+          </div>
+          <span className="text-lg font-semibold">Noah</span>
         </button>
       </div>
     </div>

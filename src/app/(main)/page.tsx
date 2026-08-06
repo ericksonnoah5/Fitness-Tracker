@@ -1,69 +1,13 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { cookies } from "next/headers";
+import { verifySessionToken, SESSION_COOKIE_NAME } from "@/lib/auth";
+import { LoginGate } from "@/components/login-gate";
+import { Hub } from "@/components/hub";
 
-export default function Page() {
-  const router = useRouter();
-
-  function account() {
-    router.push(`/account`);
-  }
-  function fitness() {
-    router.push(`/login`);
-  }
-  function katie() {
-    router.push(`/katie`);
-  }
-  function login() {
-    router.push(`/login`);
-  }
-  function noah() {
-    router.push(`/noah`);
-  }
-  function notes() {
-    router.push(`/notes`);
-  }
-  function raspberrypi() {
-    router.push(`/dashboard`);
-  }
-  function recipes() {
-    router.push(`/recipes`);
-  }
-  function signup() {
-    router.push(`/signup`);
-  }
-  function dashboardv2() {
-    router.push(`/dashboardv2`);
-  }
-  function test() {
-    router.push(`/test`);
-  }
-
-  return (
-    <>
-      <div className="grid h-screen w-screen grid-cols-1 grid-rows-4 grid-rows-8 gap-5 sm:grid-cols-2">
-        <Button className="flex h-full text-5xl" onClick={fitness}>
-          Fitness
-        </Button>
-        <Button className="flex h-full text-5xl" onClick={dashboardv2}>
-          Potty
-        </Button>
-        <Button className="flex h-full text-5xl" onClick={katie}>
-          Katie
-        </Button>
-        <Button className="flex h-full text-5xl" onClick={noah}>
-          Noah
-        </Button>
-        <Button className="flex h-full text-5xl" onClick={raspberrypi}>
-          Dashboard
-        </Button>
-        <Button className="flex h-full text-5xl" onClick={recipes}>
-          Recipes
-        </Button>
-        <Button className="flex h-full text-5xl" onClick={test}>
-          Test
-        </Button>
-      </div>
-    </>
+export default async function Page() {
+  const cookieStore = await cookies();
+  const authed = await verifySessionToken(
+    cookieStore.get(SESSION_COOKIE_NAME)?.value,
   );
+
+  return authed ? <Hub /> : <LoginGate />;
 }
