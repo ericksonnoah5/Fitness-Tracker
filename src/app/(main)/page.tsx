@@ -33,7 +33,7 @@ export default function Page() {
     router.push(`/signup`);
   }
   function dashboardv2() {
-    router.push(`/dashboardv2`);
+    router.push(`/dogdash`);
   }
   function test() {
     router.push(`/test`);
