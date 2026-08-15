@@ -63,5 +63,6 @@
 
   html {
     font-family: var(--font-sans);
+    background-color: black;
   }
 }
