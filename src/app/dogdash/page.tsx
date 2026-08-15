@@ -8,6 +8,7 @@ import Image from "next/image";
 import { PaperBag } from "lucide-react";
 import { OctagonX } from "lucide-react";
 import { Dog } from "lucide-react";
+import { AlarmClock } from "lucide-react";
 
 import { Droplets } from "lucide-react";
 
@@ -87,9 +88,9 @@ export default function DashboardV2Page() {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
-    if (hours > 0) return `${hours}h ${minutes}m ago`;
-    if (minutes > 0) return `${minutes}m ${seconds}s ago`;
-    return `${seconds}s ago`;
+    if (hours > 0) return `${hours}h ${minutes}m`;
+    if (minutes > 0) return `${minutes}m ${seconds}s`;
+    return `${seconds}s`;
   }
 
   async function getPoopTime() {
@@ -211,12 +212,12 @@ export default function DashboardV2Page() {
       <div className="h-full rounded-3xl bg-black bg-black/60 font-sans tracking-wide backdrop-blur-md">
         <div className="h-full rounded-2xl bg-black/60 p-4">
           <h1 className="flex h-full items-center justify-center text-wrap p-10 text-center text-5xl">
-            <Dog className="!h-10 !w-10"></Dog> Doggy potty dash
+            <Dog className="!h-12 !w-12"></Dog> Doggy potty dash
           </h1>
         </div>
         <div className="grid h-[600px] h-full w-screen grid-cols-1 sm:grid-cols-4">
           <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
-            Poops: {poopnumber}
+            Poos {poopnumber}
           </h1>
           <Button
             className="m-2 flex h-full items-center justify-center p-5 text-3xl"
@@ -228,14 +229,18 @@ export default function DashboardV2Page() {
             {lastpoop
               ? lastpoop.toLocaleTimeString("en-US", {
                   timeZone: CENTRAL_TIME_ZONE,
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
                 })
               : null}
           </h1>
-          <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
+          <h1 className="m-2 flex h-full items-center justify-center gap-3 p-5 text-center text-3xl">
+            <AlarmClock className="h-10 w-10"></AlarmClock>
             {formatElapsed(nextpoop)}
           </h1>
-          <div className="block sm:hidden">
-            ________________________________________________________
+          <div className="block h-1 text-center sm:hidden">
+            ________________________________________
           </div>
 
           <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
@@ -251,14 +256,18 @@ export default function DashboardV2Page() {
             {lastpee
               ? lastpee.toLocaleTimeString("en-US", {
                   timeZone: CENTRAL_TIME_ZONE,
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
                 })
               : null}
           </h1>
-          <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
+          <h1 className="m-2 flex h-full items-center justify-center gap-3 p-5 text-center text-3xl">
+            <AlarmClock className="h-10 w-10"></AlarmClock>
             {formatElapsed(nextpee)}
           </h1>
-          <div className="block sm:hidden">
-            ________________________________________________________
+          <div className="block h-1 text-center sm:hidden">
+            _______________________________________
           </div>
 
           <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
@@ -274,6 +283,9 @@ export default function DashboardV2Page() {
             {currenttime
               ? currenttime.toLocaleTimeString("en-US", {
                   timeZone: CENTRAL_TIME_ZONE,
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
                 })
               : null}
           </h1>
