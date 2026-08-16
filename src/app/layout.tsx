@@ -17,8 +17,8 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Noah and Katie's",
-  description: "",
+  title: "Core",
+  description: "This is my personal website stay away.",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.png",
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Noah and Katie's",
+    title: "Core",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({

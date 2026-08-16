@@ -216,7 +216,7 @@ export default function DashboardV2Page() {
           </h1>
         </div>
         <div className="grid h-[600px] h-full w-screen grid-cols-1 sm:grid-cols-4">
-          <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
+          <h1 className="m-2 flex hidden h-full items-center justify-center p-5 text-3xl sm:block sm:text-center">
             Poos {poopnumber}
           </h1>
           <Button
@@ -239,11 +239,11 @@ export default function DashboardV2Page() {
             <AlarmClock className="h-10 w-10"></AlarmClock>
             {formatElapsed(nextpoop)}
           </h1>
-          <div className="block h-1 text-center sm:hidden">
+          <div className="block text-center sm:hidden">
             ________________________________________
           </div>
 
-          <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
+          <h1 className="m-2 flex hidden h-full items-center justify-center p-5 text-3xl sm:block sm:text-center">
             Pees: {peenumber}
           </h1>
           <Button
@@ -266,11 +266,11 @@ export default function DashboardV2Page() {
             <AlarmClock className="h-10 w-10"></AlarmClock>
             {formatElapsed(nextpee)}
           </h1>
-          <div className="block h-1 text-center sm:hidden">
+          <div className="block text-center sm:hidden">
             _______________________________________
           </div>
 
-          <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
+          <h1 className="m-2 flex hidden h-full items-center justify-center p-5 text-3xl sm:block sm:text-center">
             Accidents: {accidents}
           </h1>
           <Button
@@ -279,7 +279,7 @@ export default function DashboardV2Page() {
           >
             <OctagonX className="!h-10 !w-10"></OctagonX>Accident
           </Button>
-          <h1 className="m-2 flex h-full items-center justify-center p-5 text-3xl">
+          <h1 className="m-2 flex hidden h-full items-center justify-center p-5 text-3xl sm:block sm:text-center">
             {currenttime
               ? currenttime.toLocaleTimeString("en-US", {
                   timeZone: CENTRAL_TIME_ZONE,
