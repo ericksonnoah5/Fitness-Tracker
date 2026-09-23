@@ -4,6 +4,10 @@ A Next.js personal hub combining calorie tracking, a home dashboard, professiona
 
 [Live site](https://fitness-tracker-chi-ashy.vercel.app)
 
+![Fitness Tracker public login screen](docs/screenshots/fitness-login.jpg)
+
+*Public login screen from the deployed app.*
+
 ## Overview
 
 Originally a fitness tracker, this project has grown into a shared personal hub for Noah and Katie. Supabase provides data storage for calorie entries, dog events, photo uploads, and push subscriptions. Several account and planning pages remain placeholders.
